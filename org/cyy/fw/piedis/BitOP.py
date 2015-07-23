@@ -1,0 +1,10 @@
+# -*- coding: GBK -*-
+'''
+Created on 2015Äê7ÔÂ8ÈÕ
+
+@author: yunyun
+'''
+AND = 'AND'
+OR = 'OR'
+XOR = 'XOR'
+NOT = 'NOT'
