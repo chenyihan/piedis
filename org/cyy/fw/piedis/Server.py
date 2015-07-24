@@ -31,12 +31,14 @@ class ServerNode(NodeInfo):
     
     def setHost(self, host):
         self.host = host
+        return self
     
     def getHost(self):
         return self.host
     
     def setPort(self, port):
         self.port = port
+        return self
     
     def getPort(self):
         return self.port
