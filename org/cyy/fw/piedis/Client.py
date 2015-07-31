@@ -9,6 +9,7 @@ import socket
 from org.cyy.fw.piedis import RedisProtocol, Command, RedisKeyword, Response
 from org.cyy.fw.piedis.Command import BinaryCommand
 from org.cyy.fw.piedis.Server import ServerNode
+from _sha1 import sha1
 
 
 class PiedisClient:
@@ -584,7 +585,30 @@ class PiedisClient:
         resp = self.sendCommand(Command.FLUSHDB)
         return Response.toStr(resp)
         
+    def eval(self, script, keyCount, *params):
+        resp = self.sendCommand(Command.EVAL, script, keyCount, *params)
+        return Response.toTuple(resp)
     
+    def evalSha(self, sha, keyCount, *params):
+        resp = self.sendCommand(Command.EVALSHA, sha, keyCount, *params)
+        return Response.toTuple(resp)
+    
+    def scriptLoad(self, script):
+        resp = self.sendCommand(Command.SCRIPT, RedisKeyword.LOAD, script)
+        return Response.toStr(resp)
+    
+    def scriptExist(self, script, *moreScripts):
+        resp = self.sendCommand(Command.SCRIPT, RedisKeyword.EXISTS, script, *moreScripts)
+        return Response.toTuple(resp)
+    
+    def scriptFlush(self):
+        resp = self.sendCommand(Command.SCRIPT, RedisKeyword.FLUSH)
+        return Response.toStr(resp)
+    
+    def scriptKill(self):
+        resp = self.sendCommand(Command.SCRIPT, RedisKeyword.KILL)
+        return Response.toStr(resp)
+        
     def sendCommand(self, command, *args):
         message = BinaryCommand(command, *args)
         data = RedisProtocol.generateRequestData(message)
