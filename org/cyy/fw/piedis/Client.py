@@ -475,7 +475,7 @@ class PiedisClient:
         return Response.toScoreMember(resp)
     
     def zRangeByScoreWithScoresByOffset(self, key, Min, Max, offset, count):
-        resp = self.sendCommand(Command.ZRANGEBYSCORE, key, str(Min), str(Max), RedisKeyword.WITHSCORES), RedisKeyword.LIMIT, str(offset), str(count)
+        resp = self.sendCommand(Command.ZRANGEBYSCORE, key, str(Min), str(Max), RedisKeyword.WITHSCORES, RedisKeyword.LIMIT, str(offset), str(count))
         return Response.toScoreMember(resp)
     
     def zRank(self, key, member):
@@ -515,7 +515,7 @@ class PiedisClient:
         return Response.toScoreMember(resp)
     
     def zRevRangeByScoreWithScoresByOffset(self, key, Max, Min, offset, count):
-        resp = self.sendCommand(Command.ZREVRANGEBYSCORE, key, str(Max), str(Min), RedisKeyword.LIMIT, str(offset), str(count))
+        resp = self.sendCommand(Command.ZREVRANGEBYSCORE, key, str(Max), str(Min), RedisKeyword.WITHSCORES, RedisKeyword.LIMIT, str(offset), str(count))
         return Response.toScoreMember(resp)
     
     def zRevRank(self, key, member):

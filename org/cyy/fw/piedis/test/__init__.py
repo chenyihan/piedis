@@ -6,7 +6,7 @@ from org.cyy.fw.piedis.Server import ServerNode
 
 class BaseCmdTest(unittest.TestCase):
     def setUp(self):
-        host = "192.168.1.107";
+        host = "192.168.1.106";
         port = 6379;
         self.client = PiedisClient()
         self.client.setHost(host)
