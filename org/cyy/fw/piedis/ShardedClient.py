@@ -380,9 +380,9 @@ class ShardedClient:
         client = self.getClient(key)
         return client.zRevRangeByScoreWithScoresByOffset(key, Max, Min, offset, count)
     
-    def zRevRank(self, key, start, end):
+    def zRevRank(self, key, member):
         client = self.getClient(key)
-        return client.zRevRank(key, start, end)
+        return client.zRevRank(key, member)
     
     def zScore(self, key, member):
         client = self.getClient(key)
